@@ -160,6 +160,8 @@ Error message and password prompt
 
 <li>#GESTURE</li>
 
+<li>#GRAPH</li>
+
 <li>#HOST</li>
 
 <li>#HUMAN</li>
@@ -198,8 +200,6 @@ Error message and password prompt
 
 <li>#PART</li>
 
-<li>#PATTERN</li>
-
 <li>#PERSON</li>
 
 <li>#PROFILE</li>
@@ -207,8 +207,6 @@ Error message and password prompt
 <li>#PROTOCOL</li>
 
 <li>#RECORD</li>
-
-<li>#RULE</li>
 
 <li>#SEQUENCE</li>
 
@@ -261,16 +259,6 @@ Error message and password prompt
 <li>Guh</li>
 
 <li>Make-O-Matic</li>
-
-<li>Neo4j/Attribute</li>
-
-<li>Neo4j/Connection</li>
-
-<li>Neo4j/Graph</li>
-
-<li>Neo4j/Label</li>
-
-<li>Neo4j/Node</li>
 
 <li>Pattern-Recognition</li>
 
@@ -340,18 +328,8 @@ Wie mit dem (fertigen) Collector eine aufnahmefähige Collection erstellt wird b
 <div created="20170724143936393" modified="20170724145023802" tags="" title="#COLLECTOR/Communication-Unit">
 <pre>Kommunikationseinheit eines [[Collector|#COLLECTOR]]s</pre>
 </div>
-<div created="20170724144929922" modified="20170724160729211" tags="" title="#COLLECTOR/Sensor">
-<pre>Die technische Erfassgungseinheit eines [[#COLLECTOR|#COLLECTOR]]s.
-
-Ein Sensor ist ein zentraler Bestandteil eines Collectors.
-Er steht an der ersten Stelle der Datenerfassung bei MOM und ist ein Bauteil, der eine physikalische Eingangsgröße erfasst und in ein weiterverarbeitbares elektrisches Signal umformt (beispielsweise Temperatur in elektrische Spannung).
-
-Beispiele für Sensoren bei MOM sind:
-- Kameramodul in einer am Kopf oder an Maschinen montierten Kamera-Einheit
-- Beschleunigungs- oder Lagesensoren
-- Taster
-- RFID-Reader
-- Stromsensor</pre>
+<div created="20170724144929922" modified="20170724145002833" tags="" title="#COLLECTOR/Sensor">
+<pre>Die technische Erfassgungseinheit eines [[#COLLECTOR|#COLLECTOR]]s</pre>
 </div>
 <div created="20170724143243858" modified="20170724143852941" tags="" title="#COMMANDSET">
 <pre></pre>
@@ -383,6 +361,54 @@ Daneben gibt es noch die Guh-Events. Sie werden nicht durch die Rule Engine erze
 <pre>Eine Gesture ist eine atomare Handlungseinheit. Sie wird in der zweiten (mittleren) Ebene der Mustererkennung detektiert. Die Pattern Engine bzw. die in ihr liegenden Patterns generieren die Gestures und legen sie im Gesture Stream zur Weiterverarbeitung ab.
 Beispiele für Gestures können sein Deckel_auf / Deckel_zu, oder Handbewegung_nachvorn oder Handbewegung_rechtsdrehend.</pre>
 </div>
+<div created="20170724141925328" modified="20170724141941649" tags="" title="#GRAPH">
+<pre>Neo4j Style Definition der Zusammenhänge als Graph:
+
+Labels:
+
+Person
+User
+
+Machine
+Tool
+Software
+(Meter)
+Interface
+
+Host
+
+Collector
+Attribute
+
+Ressource
+Information
+Consumable
+
+
+Kanten:
+
+works_at
+gekauft_bei
+gekauft_von
+hergestellt_von
+owned_by
+licensed_for
+
+sends_to
+
+creates
+consumes
+uses_a
+
+has_a
+consists_of
+needs_a
+
+similar_to
+
+length
+width</pre>
+</div>
 <div created="20170724135017730" modified="20170724155646354" tags="" title="#HOST">
 <pre>Ein Host ist ein Device (Tool, Machine, Bestandteil einer Machine ... ), an der ein [[#COLLECTOR]] befestigt bzw. angedockt ist. Erst der Umstand, dass ein [[#COLLECTOR]] am [[#DEVICE]] angedockt ist, macht das Device zum Host (das Label Host wird ihm zugewiesen). Das Device kann bzw. wird in aller Regel bereits zuvor mit einem entsprechenden [[#AGENT]] im [[#MOM-Framework]] angelegt sein, beispielsweise als Tool oder Machine, oder als Komponente einer Machine.
 Wenn eine Machine bzw. ihre Architektur in ihrem zugehörigen Agent mit mehreren Bestandteilen / Komponenten (Nodes) abgebildet ist, bekommt die Komponente, an der der Collector andockt, das Label Host. Gleichzeitig bekommt die Machine selbst (bzw. der &quot;Haupt-Node&quot;) das Label Host als Kennzeichung, woher Daten kommen.</pre>
@@ -390,22 +416,14 @@ Wenn eine Machine bzw. ihre Architektur in ihrem zugehörigen Agent mit mehreren
 <div created="20170724142037467" modified="20170724142100155" tags="" title="#HUMAN">
 <pre>Person als Träger eines Collectors wird als [[#HOST]] bezeichnet</pre>
 </div>
-<div created="20170724143014788" modified="20170724160054662" tags="" title="#LOGFILE">
-<pre>textuelle Darstellung der Inhalte des [[#MEDIUM]]s.
-
-Das LOG File ist ein statischer Auszug aus dem Data Storage.
-Will man gezielt auf bestimmte Daten zugreifen, erstellt die LOG Engine basierend auf den Parametern der Anfrage ein linearisiertes LOG File. Es kann z.B. die Actions und Gestures eines Buildup enthalten, oder auch die dazugehörigen Data. Je nach Bedarf greift die LOG Engine dafür auf die verschiedenen Teile des Data Storage zurück.
-
-Interessant ist das LOG File beispielsweise dafür, um sich eine Liste aller Machines / Devices ausgeben zu lassen, die aktuell verfügbar sind. Oder: Eine selektierte knappe Übersicht über ein Buildup hilft bei der Kalkulation von Aufwand, Dauer, ...</pre>
+<div created="20170724143014788" modified="20170724143037653" tags="" title="#LOGFILE">
+<pre>textuelle Darstellung der Inhalte des [[#MEDIUM]]s.</pre>
 </div>
 <div created="20170724142108930" modified="20170724142205964" tags="" title="#MACHINE">
 <pre>[[#TOOL]] das Information zur Verrichtung seiner Arbeit benötigt. Trägt es einen [[#COLLECTOR]] so wird es auch als [[#HOST]] bezeichnet.</pre>
 </div>
-<div created="20170724142829284" modified="20170724160117086" tags="" title="#MEDIUM">
-<pre>Durch [[#MOM-Viewer]] dargestellter [[Content]].
-
-Das Medium beschreibt den Stil eines Buildup , bzw. den Stil in dem ein Buildup über den Viewer präsentiert wird.
-Das betrifft Dinge wie die Grafik-Auflösung und -Filter, Bildformat, Blickwinkel, eingeblendete Text-Informationen, Ansichtsmöglichkeiten, Filteroptionen.</pre>
+<div created="20170724142829284" modified="20170724142943548" tags="" title="#MEDIUM">
+<pre>Durch [[#MOM-Viewer]] dargestellter [[Content]].</pre>
 </div>
 <div created="20170724143533297" modified="20170724152653423" tags="" title="#MOM-Basestation">
 <pre>Ein Gerät, dass [[#DATA]] von verschiedenen [[#COLLECTOR]] über einzelne [[#CHANNEL]]s empfängt und abspeichert.
@@ -424,8 +442,8 @@ Eine Engine ist ein abgegrenzter Teil des Systems innerhalb des MOM Frameworks, 
 Ein Beispiel ist die Sequence Engine. Ihre Aufgabe ist es, aus Gestures Actions zu generieren. In der Sequence Engine liegen diverse Sequences, die konkret an der Erfüllung dieser Aufgabe arbeiten, indem sie den Gesture Stream analysieren.
 Ein weiteres Beispiel mit einem umfassenderen Rahmen und vielfältigeren Aufgaben ist die MOM Engine.</pre>
 </div>
-<div created="20170724141104156" modified="20170724160241680" tags="" title="#MOM-Framework">
-<pre>Das Framework umfasst alle Technologien, die notwendig sind, um die Funktionsfähigkeit von [[Make-O-Matic]] zu gewährleisten. Es umfasst die [[#MOM-Basestation]], [[#MOM-Plattform]], [[#MOM-Viewer]], [[#MOM-Editor]], [[#MOM-Publisher]].</pre>
+<div created="20170724141104156" modified="20170724141147477" tags="" title="#MOM-Framework">
+<pre></pre>
 </div>
 <div created="20170724150242212" modified="20170724150247317" tags="" title="#MOM-Glasses">
 <pre></pre>
@@ -439,39 +457,20 @@ Ein weiteres Beispiel mit einem umfassenderen Rahmen und vielfältigeren Aufgabe
 <div created="20170724150701922" modified="20170724150820622" tags="" title="#MOM-Inventory">
 <pre>Speichert und verwaltet Information über [[Maschinen|#MACHINE]]s, [[#CONSUMABLE]]s, [[#PART]]s, [[#RECORD]]s,..</pre>
 </div>
-<div created="20170724145537011" modified="20170724160543828" tags="" title="#MOM-Plattform">
-<pre>Die Platform liegt in der Cloud. Auf der Platform befindet sich die [[#MOM-Engine]] und das [[#MOM-Repository]]. Der [[#USER]] greift über ein Web-Interface auf sie zu (siehe auch [[#MOM-Editor]], [[#MOM-Viewer]]).
-Die [[#MOM-Basestation]] ist über das das Internet mit der [[#MOM-Plattform]] verbunden.</pre>
+<div created="20170724145537011" modified="20170724145543177" tags="" title="#MOM-Plattform">
+<pre></pre>
 </div>
 <div created="20170724155247717" modified="20170724155317133" tags="" title="#MOM-Publisher">
 <pre>Eine Software zur Veröffentlichung von [[#BUILDUP]]s.</pre>
 </div>
-<div created="20170724143330231" modified="20170724160636459" tags="" title="#MOM-Repository">
-<pre>Das Repository ist Bestandteil der Platform. Es ist eine Bibliothek / ein Archiv für Algorithmen aller Art. Beispielsweise werden hier Rules, Patterns und Sequences abgelegt, weiters Firmware für Collectors, etc...
-Der User greift über das Web Interface auf das Repository zu und holt sich die benötigten Algorithmen.
-Bestandteile des Repository sind:
-- Media Repository
-- Guh-Plugin Repository
-- Collector Firmware Repository
-- Pipeline Repository (Pattern Recognition)</pre>
+<div created="20170724143330231" modified="20170724143357439" tags="" title="#MOM-Repository">
+<pre>Es gibt untersch. Arten von Repos.....</pre>
 </div>
-<div created="20170724142837986" modified="20170724160903191" tags="" title="#MOM-Viewer">
-<pre>Der Viewer ist der &quot;Player&quot; für Buildups. Er dient dem Ansehen der Buildups. Dabei bietet er gegenüber einem Videoplayer allerdings mehr Möglichkeiten, etwa Sprung- und Filterfunktionen.
-Stil und Optionen der Darstellung sind im Medium beschrieben.
-Über den Viewer werden User die öffentlichen Buildups anderer User bzw. Content-Schaffender betrachten (oder ihre eigenen, sofern sie sie nicht editieren wollen).</pre>
+<div created="20170724142837986" modified="20170724150627713" tags="" title="#MOM-Viewer">
+<pre>Interface zur Darstellung von ....</pre>
 </div>
-<div created="20170724142359540" modified="20170724160023357" tags="" title="#MOM/Architektur">
-<pre>Die Datenspeicherung findet bei MOM an mehreren Orten bzw. in unterschiedlichen Datenbanken statt. Dabei wird nach Art und Zweck der Daten und nach Abschnitten und Verarbeitungs-Ebenen im Stream unterschieden.
-
-- Die meisten Daten werden in einer Graphdatenbank auf der Platform gespeichert: Devices bzw. Agents, Rules, Events, Actions, ... (&quot;Infrastruktur&quot; und &quot;Schlussfolgerungen&quot;)
-- In der Basis werden Data in einer SQLite-Datenbank gespeichert.
-- Auf der Platform werden Data auf einer MongoDB (JSON) abgelegt.
-- Im Repository werden Algorithmen gespeichert.
-
-Spezifische Anfragen an die Datenbanken werden als LOG File an den User ausgegeben.
-
-
-Ein Collector kann in mehreren Arten an einem Host montiert werden
+<div created="20170724142359540" modified="20170724142434252" tags="" title="#MOM/Architektur">
+<pre>Ein Collector kann in mehreren Arten an einem Host montiert werden
 
 Ein, in einer Art, an einem Host montierten Collector, kann mehrere Signale detektieren
 
@@ -496,24 +495,11 @@ müssen sich die Menschen an den Maschinen/Tools anmelden?</pre>
 <div created="20170724145417665" modified="20170724145421792" tags="" title="#PART">
 <pre></pre>
 </div>
-<div created="20170724160321314" modified="20170724160336715" tags="" title="#PATTERN">
-<pre>Das Pattern gehört zum Pattern Recognition. Es analysiert die Events einer Collection (ggf. zusätzlich die Data) und generiert Gestures.
-Jedes Pattern kann genau / nur eine Gesture generieren. Innerhalb der Pattern Engine analysieren mehrere Patterns parallel ein Zeitfenster im Event Stream. Wenn erforderlich, kann das Pattern auch so gestaltet sein, dass es nach dem &quot;Auslösen&quot; durch einen Event auch auf den Data Stream zugreift, um Gestures zu erkennen. Die erkannten Gestures werden im Gesture Stream abgelegt.
-Beim Pattern können (müssen aber nicht) Machine Learning und evolutionäre Algorithmen zum Einsatz kommen.
-Pattern sind Algorithmen, die als &quot;Black Box&quot; (beliebig) austauschbar sind.
-Pattern sind in der Repository auf der Platform abgelegt und bei Bedarf verfügbar.</pre>
-</div>
 <div created="20170724145515730" modified="20170724145520082" tags="" title="#PERSON">
 <pre></pre>
 </div>
-<div created="20170724142246225" modified="20170724160606060" tags="" title="#PROFILE">
-<pre>Stellt eine Kombination von [[#HOST]], [[#COLLECTOR]] und [[#SEQUENCE]] dar.
-
-Ein Profile verbindet eine Action mit einem Host, mit einem Collector und mit einem Setup Guide. Prinzipiell umfasst ein Profile eine Collection und umfasst weiters eine Action.
-Das Profile spielt auf der User Seite eine Rolle. Es ist eine Hilfskonstruktion, um dem User die Anwendung zu erleichtern. Beispielsweise wenn der User sagt, er möchte eine bestimmte Action erkennen, kann er unter verschiedenen Profiles auswählen, die ihm dann sagen, welchen Collector er benötigt, an welchem Host er angebracht werden kann und mit welchem Setup Guide die Collection erstellt werden kann.
-Denkbar ist auch, dass der User ausgehend von seinen verfügbaren Collectors, oder ausgehend von seinen Machines (Hosts) über das Profile die Information bekommt, welche Action detektiert werden kann und welcher Setup Guide zur Erstellung der Collection erforderlich ist.
-Das Profile klärt praktisch die Frage: Was habe ich (Machine, Host, Collector, ...) und was kann ich damit machen, welche Actions können erkannt werden? Bzw. umgekehrt: Was für Actions möchte ich erkennen, und was benötige ich dafür (bestenfalls an vorhandenen Hosts, Collectoren, ...)? Zur Klärung dieser Fragen wählt der User aus einer Liste von Profiles und wählt zur Implementierung eines konkreten Settings ein konkretes Profile aus.
-Ein konkretes Profile beschreibt eindeutig: Dieser Collector, mit diesem Host, mit dieser Action, mit diesem Setting.</pre>
+<div created="20170724142246225" modified="20170724142327595" tags="" title="#PROFILE">
+<pre>Stellt eine Kombination von [[#HOST]], [[#COLLECTOR]] und [[#SEQUENCE]] dar.</pre>
 </div>
 <div created="20170724143221650" modified="20170724143302262" tags="" title="#PROTOCOL">
 <pre>Wir sprechen hier von dem für die Übertragung notwendigen Protokoll (z.B: WLAN, Bluetooth,..). Innerhalb des Protokolls werden die [[#COMMAND]]s übermittelt.</pre>
@@ -521,26 +507,11 @@ Ein konkretes Profile beschreibt eindeutig: Dieser Collector, mit diesem Host, m
 <div created="20170724150804289" modified="20170724150812730" tags="" title="#RECORD">
 <pre></pre>
 </div>
-<div created="20170724160659287" modified="20170724160704531" tags="" title="#RULE">
-<pre>Die Rule gehört zum Pattern Recognition. Sie analysiert die Data einer Collection und generiert Events.
-Jede Rule kann genau / nur einen Event generieren. Innerhalb der Rule Engine analysieren mehrere Rules parallel ein Zeitfenster im Data Stream.
-Rules sind Algorithmen, die als &quot;Black Box&quot; (beliebig) austauschbar sind.
-Rules sind im Repository auf der Platform abgelegt und bei Bedarf verfügbar.</pre>
+<div created="20170724142314436" modified="20170724142320460" tags="" title="#SEQUENCE">
+<pre></pre>
 </div>
-<div created="20170724142314436" modified="20170724160757347" tags="" title="#SEQUENCE">
-<pre>Die Sequence gehört zum Pattern Recognition. Sie analysiert Gestures und generiert Actions.
-Jede Sequence kann genau / nur eine Action generieren. Innerhalb der Sequence Engine analysieren mehrere Sequences parallel ein Zeitfenster im Gesture Stream. Die Sequence kann parallel auf die Gesture Streams mehrerer Collections und Hosts zugreifen, wenn dies erforderlich ist, um spezielle Actions zu erkennen. Die erkannten Actions werden im Action Stream abgelegt.
-Die Sequences werden zunächst als endliche Automaten modelliert. Später kann auch Machine Learning implementiert werden.
-Sequences sind Algorithmen, die als &quot;Black Box&quot; (beliebig) austauschbar sind.
-Sequences sind im Repository auf der Platform abgelegt und bei Bedarf verfügbar.</pre>
-</div>
-<div created="20170724145047588" modified="20170724160824715" tags="" title="#SETUP-GUIDE">
-<pre>Eine Anleitung zur Verbindung von [[#COLLECTOR]] und [[#HOST]].
-
-Der Setup Guide hilft dem User bei der Erstellung der Collection. Ausgehend von einem bestimmten Profile bekommt der User den Setup Guide als Schritt-für-Schritt Anleitung präsentiert, die beispielsweise das Anbringen des Collectors am Host beschreibt und das Überspielen notwendiger Firmware auf den Collector. Der Setup Guide erstellt gleichzeitig das virtuelle Abbild der Collection / die virtuelle Komponente der Collection, wobei er unter anderem auf die Device Agents zugreift und die Pattern Recognition Engines auf das Erkennen der passenden Actions vorbereitet.
-Der Setup Guide koordiniert also praktisch Mensch und Maschine bei der Implementierung eines Collectors und nimmt dem User so viel Arbeit wie möglich ab.
-
-Wie der Collector selbst aus einzelnen Komponenten erstellt wird beschreibt das Collector Setup.</pre>
+<div created="20170724145047588" modified="20170724145105927" tags="" title="#SETUP-GUIDE">
+<pre>Eine Anleitung zur Verbindung von [[#COLLECTOR]] und [[#HOST]]</pre>
 </div>
 <div created="20170724154312410" modified="20170724154329625" tags="" title="#SETUP-GUIDE/Collector">
 <pre>Das Collector Setup führt den User wie ein Tutorial Schritt für Schritt durch den Aufbau eines Collectors. Beispielsweise die Montage von Sensor, Verarbeitungseinheit und Kommunikationseinheit in einem Gehäuse. Mit Fertigstellung des Collectors, &quot;wenn alle Schritte durchgeklickt sind&quot;, erstellt das Collector Setup den Collector Agent für das eben fertig gestellte Device.
@@ -8780,7 +8751,7 @@ Wie mit dem Collector eine aufnahmefähige Collection erstellt wird beschreibt d
 <div created="20170724141259149" modified="20170724141302774" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div list="#MOM-Viewer #SEQUENCE #COLLECTOR/Sensor #RULE #MOM-Repository #PROFILE #MOM-Plattform #PATTERN #MOM-Framework #MEDIUM #LOGFILE #MOM/Architektur Neo4j/Connection Neo4j/Attribute Neo4j/Node Neo4j/Label Neo4j/Graph #HOST #GESTURE #EVENT #MOM-Publisher #ACTIVITY-STREAM #ASSEMBLY #DEVICE #SETUP-GUIDE/Collector #SETUP-GUIDE #COLLECTOR #MOM-Editor #AGENT #BUILDUP #MOM-Engine Pattern-Recognition #ACTION Guh #DATA #MOM-Basestation #COLLECTION Make-O-Matic Übersicht" title="$:/StoryList">
+<div list="#HOST #GESTURE #EVENT #MOM-Publisher #ACTIVITY-STREAM #ASSEMBLY #DEVICE #SETUP-GUIDE/Collector #SETUP-GUIDE #COLLECTOR #MOM-Editor #AGENT #BUILDUP #MOM-Engine Pattern-Recognition #ACTION Guh #DATA #MOM-Basestation #COLLECTION Make-O-Matic Übersicht" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -8829,8 +8800,8 @@ Wie mit dem Collector eine aufnahmefähige Collection erstellt wird beschreibt d
     }
 }</pre>
 </div>
-<div created="20170724142103690" modified="20170724160856054" title="$:/temp/search">
-<pre>viewer</pre>
+<div created="20170724142103690" modified="20170724155544619" title="$:/temp/search">
+<pre>host</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.14">
 <pre>{
@@ -8963,73 +8934,6 @@ Tüftler und Kreative profitieren von einer unkomplizierten Veröffentlichung ih
 Auf der anderen Seite kann Make-O-Matic in Unternehmen entscheidend zur Verbesserung interner Prozesse beitragen, beispielsweise in der Qualitätssicherung, zur effizienten Ressourcenplanung oder bei der präzisen Aufwandsabschätzung zukünftiger Aufträge.
 
 Alle Inhalte von Make-O-Matic sind Open Source. Sie sind der Maker Community, Studenten, aber auch Unternehmen und allen Interessierten frei zugänglich.</pre>
-</div>
-<div created="20170724155818327" modified="20170724155917518" tags="" title="Neo4j/Attribute">
-<pre>Können sowohl [[Neo4j/Node]]s als auch [[Neo4j/Connection]]s zugewiesen werden.</pre>
-</div>
-<div created="20170724155852773" modified="20170724155909733" tags="" title="Neo4j/Connection">
-<pre>Verbindung zwischen zwei [[Neo4j/Node]]s.</pre>
-</div>
-<div created="20170724141925328" modified="20170724155731526" tags="" title="Neo4j/Graph">
-<pre>Neo4j Style Definition der Zusammenhänge als Graph:
-
-Labels:
-
-Person
-User
-
-Machine
-Tool
-Software
-(Meter)
-Interface
-
-Host
-
-Collector
-Attribute
-
-Ressource
-Information
-Consumable
-
-
-Kanten:
-
-works_at
-gekauft_bei
-gekauft_von
-hergestellt_von
-owned_by
-licensed_for
-
-sends_to
-
-creates
-consumes
-uses_a
-
-has_a
-consists_of
-needs_a
-
-similar_to
-
-length
-width</pre>
-</div>
-<div created="20170724155736080" modified="20170724155800578" tags="" title="Neo4j/Label">
-<pre>Das Label ist ein Bestandteil der Architektur von Graph-Datenbanken. Es ist eine &quot;Kennzeichnung&quot; eines Nodes.
-Bei MOM werden Labels automatisiert basierend auf Regeln vergeben. Dabei spielen die Verbindungen (Connections) zwischen den Nodes eine entscheidende Rolle. Beispielsweise könnte eine Regel lauten: &quot;Wenn ein Device (Node) konsumiert (Connection) Information (Node), dann bekommt es das Label Machine.&quot;
-Ggf. besagt das Label, welche Atribute ein Node besitzt. (&quot;Wenn du ein User (Label) bist, dann hast du einen Namen und ein Alter (Atribute).&quot;). Welche Atribute das sind, ist im Label gespeichert, die Atribut-Werte sind im Node gespeichert.
-Ein Node kann mehrere Labels besitzen. Im Bereich der Software Architektur (Model) sind Labels Klassen (siehe OOP). Je nach Verarbeitungskontext greifen Algorithmen auf unterschiedliche Labels zu und instanzieren ein und den selben Node in unterschiedlichen Klassen. Dies verleiht der MOM Architektur große Flexibilität.
-Beispiele für Labels können sein: Action, Machine, Host, Data (?), Consumable, ...</pre>
-</div>
-<div created="20170724155804158" modified="20170724160307216" tags="" title="Neo4j/Node">
-<pre>Knoten in einem [[Neo4j/Graph]].
-Der Node ist ein Begriff aus der Architektur von Graphdatenbanken. Nodes sind Datenpunkt in der Datenbank, denen diverse Properties (Atribute) zugewiesen werden. Mehrere Nodes werden durch Edges (Kanten -&gt; bei MOM Connections) miteinander verbunden und bilden dabei einen Graphen. Nodes können durch beliebig viele Labels gekennzeichnet werden.
-Beispielsweise werden bei MOM Devices durch einen oder mehrere Nodes repräsentiert, je nachdem wie detailliert die Architektur des Devices abgebildet werden soll. Auch Gestures, Actions, etc. werden in Nodes gespeichert.
-Entscheidend für einen Node sind seine Connections zu anderen Nodes und die daraus resultierenden Labels.</pre>
 </div>
 <div created="20170724153353216" modified="20170724153738268" tags="" title="Pattern-Recognition">
 <pre>Beschreibt die Art der Mustererkennung.</pre>

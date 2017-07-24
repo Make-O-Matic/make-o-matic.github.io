@@ -455,10 +455,8 @@ Bestandteile des Repository sind:
 - Collector Firmware Repository
 - Pipeline Repository (Pattern Recognition)</pre>
 </div>
-<div created="20170724142837986" modified="20170724160903191" tags="" title="#MOM-Viewer">
-<pre>Der Viewer ist der &quot;Player&quot; für Buildups. Er dient dem Ansehen der Buildups. Dabei bietet er gegenüber einem Videoplayer allerdings mehr Möglichkeiten, etwa Sprung- und Filterfunktionen.
-Stil und Optionen der Darstellung sind im Medium beschrieben.
-Über den Viewer werden User die öffentlichen Buildups anderer User bzw. Content-Schaffender betrachten (oder ihre eigenen, sofern sie sie nicht editieren wollen).</pre>
+<div created="20170724142837986" modified="20170724150627713" tags="" title="#MOM-Viewer">
+<pre>Interface zur Darstellung von ....</pre>
 </div>
 <div created="20170724142359540" modified="20170724160023357" tags="" title="#MOM/Architektur">
 <pre>Die Datenspeicherung findet bei MOM an mehreren Orten bzw. in unterschiedlichen Datenbanken statt. Dabei wird nach Art und Zweck der Daten und nach Abschnitten und Verarbeitungs-Ebenen im Stream unterschieden.
@@ -527,20 +525,11 @@ Jede Rule kann genau / nur einen Event generieren. Innerhalb der Rule Engine ana
 Rules sind Algorithmen, die als &quot;Black Box&quot; (beliebig) austauschbar sind.
 Rules sind im Repository auf der Platform abgelegt und bei Bedarf verfügbar.</pre>
 </div>
-<div created="20170724142314436" modified="20170724160757347" tags="" title="#SEQUENCE">
-<pre>Die Sequence gehört zum Pattern Recognition. Sie analysiert Gestures und generiert Actions.
-Jede Sequence kann genau / nur eine Action generieren. Innerhalb der Sequence Engine analysieren mehrere Sequences parallel ein Zeitfenster im Gesture Stream. Die Sequence kann parallel auf die Gesture Streams mehrerer Collections und Hosts zugreifen, wenn dies erforderlich ist, um spezielle Actions zu erkennen. Die erkannten Actions werden im Action Stream abgelegt.
-Die Sequences werden zunächst als endliche Automaten modelliert. Später kann auch Machine Learning implementiert werden.
-Sequences sind Algorithmen, die als &quot;Black Box&quot; (beliebig) austauschbar sind.
-Sequences sind im Repository auf der Platform abgelegt und bei Bedarf verfügbar.</pre>
+<div created="20170724142314436" modified="20170724142320460" tags="" title="#SEQUENCE">
+<pre></pre>
 </div>
-<div created="20170724145047588" modified="20170724160824715" tags="" title="#SETUP-GUIDE">
-<pre>Eine Anleitung zur Verbindung von [[#COLLECTOR]] und [[#HOST]].
-
-Der Setup Guide hilft dem User bei der Erstellung der Collection. Ausgehend von einem bestimmten Profile bekommt der User den Setup Guide als Schritt-für-Schritt Anleitung präsentiert, die beispielsweise das Anbringen des Collectors am Host beschreibt und das Überspielen notwendiger Firmware auf den Collector. Der Setup Guide erstellt gleichzeitig das virtuelle Abbild der Collection / die virtuelle Komponente der Collection, wobei er unter anderem auf die Device Agents zugreift und die Pattern Recognition Engines auf das Erkennen der passenden Actions vorbereitet.
-Der Setup Guide koordiniert also praktisch Mensch und Maschine bei der Implementierung eines Collectors und nimmt dem User so viel Arbeit wie möglich ab.
-
-Wie der Collector selbst aus einzelnen Komponenten erstellt wird beschreibt das Collector Setup.</pre>
+<div created="20170724145047588" modified="20170724145105927" tags="" title="#SETUP-GUIDE">
+<pre>Eine Anleitung zur Verbindung von [[#COLLECTOR]] und [[#HOST]]</pre>
 </div>
 <div created="20170724154312410" modified="20170724154329625" tags="" title="#SETUP-GUIDE/Collector">
 <pre>Das Collector Setup führt den User wie ein Tutorial Schritt für Schritt durch den Aufbau eines Collectors. Beispielsweise die Montage von Sensor, Verarbeitungseinheit und Kommunikationseinheit in einem Gehäuse. Mit Fertigstellung des Collectors, &quot;wenn alle Schritte durchgeklickt sind&quot;, erstellt das Collector Setup den Collector Agent für das eben fertig gestellte Device.
@@ -8780,7 +8769,7 @@ Wie mit dem Collector eine aufnahmefähige Collection erstellt wird beschreibt d
 <div created="20170724141259149" modified="20170724141302774" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div list="#MOM-Viewer #SEQUENCE #COLLECTOR/Sensor #RULE #MOM-Repository #PROFILE #MOM-Plattform #PATTERN #MOM-Framework #MEDIUM #LOGFILE #MOM/Architektur Neo4j/Connection Neo4j/Attribute Neo4j/Node Neo4j/Label Neo4j/Graph #HOST #GESTURE #EVENT #MOM-Publisher #ACTIVITY-STREAM #ASSEMBLY #DEVICE #SETUP-GUIDE/Collector #SETUP-GUIDE #COLLECTOR #MOM-Editor #AGENT #BUILDUP #MOM-Engine Pattern-Recognition #ACTION Guh #DATA #MOM-Basestation #COLLECTION Make-O-Matic Übersicht" title="$:/StoryList">
+<div list="#COLLECTOR/Sensor #RULE #MOM-Repository #PROFILE #MOM-Plattform #PATTERN #MOM-Framework #MEDIUM #LOGFILE #MOM/Architektur Neo4j/Connection Neo4j/Attribute Neo4j/Node Neo4j/Label Neo4j/Graph #HOST #GESTURE #EVENT #MOM-Publisher #ACTIVITY-STREAM #ASSEMBLY #DEVICE #SETUP-GUIDE/Collector #SETUP-GUIDE #COLLECTOR #MOM-Editor #AGENT #BUILDUP #MOM-Engine Pattern-Recognition #ACTION Guh #DATA #MOM-Basestation #COLLECTION Make-O-Matic Übersicht" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -8829,8 +8818,8 @@ Wie mit dem Collector eine aufnahmefähige Collection erstellt wird beschreibt d
     }
 }</pre>
 </div>
-<div created="20170724142103690" modified="20170724160856054" title="$:/temp/search">
-<pre>viewer</pre>
+<div created="20170724142103690" modified="20170724160722332" title="$:/temp/search">
+<pre>Sensor</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.14">
 <pre>{
